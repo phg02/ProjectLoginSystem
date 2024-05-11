@@ -1,0 +1,127 @@
+.container-step {
+    width: 70%;
+    height: 100%;
+    font-size: 1.8rem;
+    padding-left:15px;
+    font-family: 'Inter', sans-serif;
+  }
+  
+  .step {
+    
+    padding: 10px;
+    
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    
+    background-color: cream;
+  }
+  
+  .v-stepper {
+    position: relative;
+  /*   visibility: visible; */
+  }
+  
+  
+  /* regular step */
+  .step .circle {
+    background-color: white;
+    border: 3px solid gray;
+    border-radius: 100%;
+    width: 20px;    /* +6 for border */
+    height: 20px;
+    display: inline-block;
+  }
+  
+  .step .line {
+      top: 32px;
+    left: 8px;
+  /*   height: 120px; */
+    height: 100%;
+      
+      position: absolute;
+      border-left: 3px solid gray;
+  }
+  
+  .step.completed .circle {
+    visibility: visible;
+    background-color: rgb(6,150,215);
+    border-color: rgb(6,150,215);
+  }
+  
+  .step.completed .line {
+    border-left: 3px solid rgb(6,150,215);
+  }
+  
+  .step.active .circle {
+  visibility: visible;
+    border-color: rgb(6,150,215);
+  }
+  
+  .step.empty .circle {
+      visibility: hidden;
+  }
+  
+  .step.empty .line {
+  /*     visibility: hidden; */
+  /*   height: 150%; */
+    top: 0;
+    height: 150%;
+  }
+  
+  
+  .step:last-child .line {
+    border-left: 3px solid white;
+    z-index: -1; /* behind the circle to completely hide */
+  }
+  
+  .content {
+    margin-left: 20px;
+    display: inline-block;
+  }
+  
+  
+  @media (max-width: 600px) {
+    .container-step{
+        margin-left: 5%;    
+        width:85%;
+        font-size: 1rem;
+    }
+    .step .line {
+        top: 23px;
+      left: 8px;
+    /*   height: 120px; */
+      height: 100%;
+        
+        position: absolute;
+        border-left: 3px solid gray;
+    }
+  }
+
+  @media (min-width: 1200px) {
+    .container-step{
+      font-size: 2.2rem;
+    }
+    .step .line {
+      top: 40px;
+      left: 8px;
+  /*   height: 120px; */
+    height: 100%;
+      
+      position: absolute;
+      border-left: 3px solid gray;
+  }  
+  }
+
+  @media (max-width: 1000px) {
+    .container-step{
+      font-size: 1.2rem;
+    }
+  }
+
+  @media (max-width: 380px) {
+    .container-step{
+      font-size: 0.8rem;
+    }
+  }
+

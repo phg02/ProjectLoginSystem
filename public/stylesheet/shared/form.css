@@ -1,0 +1,57 @@
+:root{
+    --primary-label-color: #7F4B23;
+    --input-bg-color: #F8EEDF;
+    --form-bg-color: #F8EEDF;
+}
+
+.custom-label{
+    color: var(--primary-label-color) !important;
+    font-family: 'Inter', sans-serif;
+}
+
+.custom-input{
+    background-color: var(--input-bg-color) !important;
+}
+
+.signup-input{
+    background-color: var(--input-bg-color);
+    width: 100%;
+    padding: 0.3rem 1.5rem;
+    border: none;
+    border-radius: 0.6rem;
+}
+
+.create-post-input{
+    background-color: var(--input-bg-color);
+    width: 80%;
+    padding: 0.5rem 1.5rem;
+    border: none;
+    font-size: 1rem;
+    border-radius: 0.6rem;
+}
+
+.password-stretch{
+    width: 100%;
+}
+.signup-input-password{
+    background-color: var(--input-bg-color);
+    padding: 0.3rem 1.5rem;
+    border: none;
+    border-radius: 0.6rem !important;
+    width: 85%
+}
+
+.btn-div{
+    width: 10%;
+    margin-right: 5%
+}
+
+input::placeholder{
+    color: #7F4B23;
+    font-family: 'Inter', sans-serif;
+}
+
+.post-label{
+    font-family: "Kreon", sans-serif;
+    font-size: 1.2rem
+}

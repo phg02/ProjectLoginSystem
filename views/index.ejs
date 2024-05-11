@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PawPals</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kreon:wght@300..700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Kreon:wght@300..700&display=swap"
+        rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="stylesheet/homepage.css">
+</head>
+
+<body>
+
+    <nav class="navbar fixed-top navbar-light bg-body-tertiary navbar-expand-lg  nav-width-check">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="#">
+                <img src="images/logo.svg" height="40px" width="40px">
+                <h4 class="text-center ms-1 mt-2">PawPals</h4>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+                <ul class="navbar-nav">
+                    <li class="nav-items">
+                        <!-- fill in this -->
+                        <a href="#adopt-ad" class="nav-link">Adoption</a>
+                    </li>
+                    <li class="nav-items">
+                        <!-- fill in this -->
+                        <a href="#community-ad" class="nav-link">Pet community</a>
+                    </li>
+                    <li class="nav-items">
+                        <!-- fill in this -->
+                        <a href="#" class="nav-link">About us</a>
+                    </li>
+                    <li class="nav-items">
+                        <!-- fill in this -->
+                        <a href="/signin" class="nav-link">Login</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <section id="landingPart">
+        <div class="grid-container">
+            <div class="dog-img">
+                <img src="images/dog.png" alt="animated dog">
+            </div>
+            <div class="hero-and-btn">
+                <h1>Woofcome to the
+                    biggest pet-owning
+                    community</h1>
+                <div class="d-grid gap-2 d-md-block">
+                    <a href="/signin" class="custom-btn" type="button">Login</a>
+                    <a href="/signup" class="custom-btn" type="button">Sign up</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="whiteblank"></section>
+    <section id="community-ad">
+        <div class="hero-com">
+            <h1>Share memorable moments and pet’s health advices</h1>
+        </div>
+        <div class="collage-wrapper">
+            <div class="collage-grid">
+                <div class="img-1">
+                    <img src="images/HD-wallpaper-selfies-caine-funny-selfie-collage-pisici-cat-dog-animal.jpg">
+                </div>
+                <div class="img-2">
+                    <img src="images/image-39535-800.jpg" alt="example">
+                </div>
+            </div>
+        </div>
+        <div class="community-btn">
+            <a href="/signup" class="adopt-btn">Join the community</a>
+        </div>
+        
+    </section>
+    <section class="whiteblank"></section>
+    <section id="adopt-ad">
+        <div class="adopt-grid">
+            <div class="dog-run">
+                <img src="images/dogAdopt.png" alt="dog running">
+            </div>
+            <div class="process">
+                <div class="title-section">
+                <h1>How to adopt?</h1>
+                </div>
+                <div class='step-wrapper'>
+                    <div class="container-step">
+                        <!-- completed -->
+                        <div class="step completed">
+                            <div class="v-stepper">
+                                <div class="circle"></div>
+                                <div class="line"></div>
+                            </div>
+
+                            <div class="content">
+                                Find a pet
+                            </div>
+                        </div>
+
+                        <!-- active -->
+                        <div class="step">
+                            <div class="v-stepper">
+                                <div class="circle"></div>
+                                <div class="line"></div>
+                            </div>
+
+                            <div class="content">
+                                Check pet's images and details
+                            </div>
+                        </div>
+
+                        <!-- empty -->
+                        <div class="step">
+                            <div class="v-stepper">
+                                <div class="circle"></div>
+                                <div class="line"></div>
+                            </div>
+
+                            <div class="content">
+                                Contact and make appointment
+                            </div>
+                        </div>
+
+                        <!-- regular -->
+                        <div class="step">
+                            <div class="v-stepper">
+                                <div class="circle"></div>
+                                <!-- <div class="line"></div> -->
+                            </div>
+
+                            <div class="content">
+                                Go to the shelter and adopt
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="adopt-btn-container">
+                    <!-- insert link here -->
+                    <a hred="/signup" class="adopt-btn bottom-btn">Go adopt</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="whiteblank"></section>
+    <footer>
+        <div class="container">
+            <div class="row p-5">
+                <div class="col-md-3 gap-bottom">
+                    <!-- fill link -->
+                    <a href="#"> <img src="images/light.png" height="40px" width="40px" style="color: white"></a>                    
+                </div>
+                <div class="col-lg-3">
+                    <!-- fill link -->
+                    <a href="#adopt-ad">Adopt a pet</a>                    
+                </div>
+                <div class="col-lg-3">
+                    <!-- fill link -->
+                    <a href="#community-ad">Community</a>                    
+                </div>
+                <div class="col-lg-3">
+                    <!-- fill link -->
+                    <a href="">About us</a>                    
+                </div>
+            </div>
+        </div>
+        <hr>
+        <p>&#xa9; 2024 Pawpal by Agroup | All Rights Reserved</p>
+    </footer>
+</body>
+
+</html>
