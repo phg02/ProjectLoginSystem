@@ -20,8 +20,7 @@ app.use(express.urlencoded({ limit: '10mb',extended: true }));
 app.use(methodOverride('_method'));
 app.use(express.static('public'));
 
-//pasport config
-require('./config/passport')(passport);
+
 
 //Connect to MongoDB
 mongoose.connect(process.env.MONGO_URI)
@@ -32,12 +31,16 @@ mongoose.connect(process.env.MONGO_URI)
 app.use(session({
     secret: process.env.SESSION_SECRET,
     resave: false,
-    saveUninitialized: false,
+    saveUninitialized: true,
 }));
 
 //passort middleware
 app.use(passport.initialize());
 app.use(passport.session());
+
+
+//pasport config
+require('./config/passport')(passport);
 
 app.use(flash());
 app.use((req,res, next) =>{
