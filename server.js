@@ -11,8 +11,7 @@ const passport = require('passport');
 //Routes
 const indexRouter = require('./routes/indexRouter');
 
-//pasport config
-require('./config/passport')(passport);
+
 
 
 //Middleware
@@ -20,6 +19,16 @@ app.use(express.json());
 app.use(express.urlencoded({ limit: '10mb',extended: true }));
 app.use(methodOverride('_method'));
 app.use(express.static('public'));
+
+//pasport config
+require('./config/passport')(passport);
+
+//Connect to MongoDB
+mongoose.connect(process.env.MONGO_URI)
+    .then(() => console.log('MongoDB Connected'))
+    .catch(err => console.log(err));
+
+//session middleware
 app.use(session({
     secret: process.env.SESSION_SECRET,
     resave: false,
@@ -42,10 +51,7 @@ app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 
 
-//Connect to MongoDB
-mongoose.connect(process.env.MONGO_URI)
-    .then(() => console.log('MongoDB Connected'))
-    .catch(err => console.log(err));
+
 
 app.use('/', indexRouter);
 

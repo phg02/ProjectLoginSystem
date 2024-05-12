@@ -20,11 +20,17 @@ router.get('/signin', (req, res) => {
 
 router.post('/signin', (req, res, next) => {
     passport.authenticate('local', {
-        successRedirect: '/test ',
+        successRedirect: '/test',
         failureRedirect: '/fail',
-        failureFlash: true
+        failureFlash: true,
     })(req, res, next);
+    // console.log('test');
 }); 
+
+//testing route
+router.get('/test', (req, res) => {
+    res.send('test route');
+});
 
 router.get('/signup', (req, res) => {
     res.render('signup')
@@ -71,10 +77,7 @@ router.post('/signup', async (req, res) => {
      }
 });
 
-//testing route
-router.get('/test', (req, res) => {
-    res.send('test route');
-});
+
 
 router.get('/createpost', (req, res) => {
     res.render('createPost')
