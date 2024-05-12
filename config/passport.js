@@ -1,18 +1,19 @@
 const LocalStrategy = require('passport-local').Strategy;
 const bcrypt = require('bcrypt');
 const User = require('../models/User');
+const { get } = require('mongoose');
 
-module.exports = async (passport) => {
+module.exports = (passport) => {
     try {
         console.log('passport config');
-        const result = await passport.use(
+        passport.use(
             new LocalStrategy({ usernameField: 'email' }, async (email, password, done) => {
                 const user = await User.findOne({ email: email });
                 if (!user) {
                     console.log('No user with that email');
                     return done(null, false, { message: 'No user with that email' });
                 }
-                
+
                 // if ( !bcrypt.compare(user.password, password)) {
                 //     console.log('Password incorrect');
                 //     return done(null, false, { message: 'Password incorrect' });
@@ -27,27 +28,38 @@ module.exports = async (passport) => {
                     if (err) throw err;
                     if (isMatch) {
                         return done(null, user);
+                        // return "logged in";
                     } else {
                         return done(null, false, { message: 'Password incorrect' });
                     }
-                }); 
+                });
             })
         );
-        // console.log(result);
-        console.log('ok');
+        passport.serializeUser((user, done) => {
+            // console.log(`serial ${user.id}`);
+            done(null, user.id);
+        });
+
+        passport.deserializeUser((id, done) => {
+            console.log(id);
+            User.findById(id)
+                .then((user) => {
+                    console.log(user)
+                    done(null, user);
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
+        });
+
+        // passport.deserializeUser((id, done) =>{
+        //     return done(null, User.findById(id));}
+        // );
     }
-    catch(e) {
+
+    catch (e) {
         console.log('error');
         return done(e);
     }
-    passport.serializeUser((user, done) => {
-        done(null, user.id);
-    });
 
-    passport.deserializeUser((id, done) => {
-        User.findById(id)
-            .then((err, user) => {
-                done(err, user);
-            });
-    });
 }

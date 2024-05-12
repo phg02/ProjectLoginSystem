@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const router = express.Router();
 const bycrypt = require('bcrypt');
 const passport = require('passport');
+const connectEnsureLogin = require('connect-ensure-login');
 
 const User = require('../models/User'); 
 
@@ -24,12 +25,16 @@ router.post('/signin', (req, res, next) => {
         failureRedirect: '/signin',
         failureFlash: true,
     })(req, res, next);
-    // console.log('test');
+    // res.json({
+    //     message: 'success'
+    // })
+    console.log('test');
 }); 
 
 //testing route
-router.get('/test', (req, res) => {
-    res.send('test route');
+router.get('/test',(req, res) => {
+    console.log('testRoute entered');
+    res.render('createPost');
 });
 
 router.get('/signup', (req, res) => {

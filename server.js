@@ -8,15 +8,24 @@ require('dotenv').config();
 const app = express();
 const passport = require('passport');
 
+
+//set up view engine
+app.set('views', __dirname + '/views');
+app.set('view engine', 'ejs');
+
+
 //Routes
 const indexRouter = require('./routes/indexRouter');
 
 
 
+//pasport config
+require('./config/passport')(passport);
+
 
 //Middleware
 app.use(express.json());
-app.use(express.urlencoded({ limit: '10mb',extended: true }));
+app.use(express.urlencoded({ limit: '10mb',extended: false }));
 app.use(methodOverride('_method'));
 app.use(express.static('public'));
 
@@ -39,8 +48,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 
-//pasport config
-require('./config/passport')(passport);
+
 
 app.use(flash());
 app.use((req,res, next) =>{
@@ -49,9 +57,6 @@ app.use((req,res, next) =>{
 })
 
 
-//set up view engine
-app.set('views', __dirname + '/views');
-app.set('view engine', 'ejs');
 
 
 
