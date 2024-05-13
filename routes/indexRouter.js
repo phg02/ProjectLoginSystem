@@ -3,19 +3,22 @@ const mongoose = require('mongoose');
 const router = express.Router();
 const bycrypt = require('bcrypt');
 const passport = require('passport');
-const connectEnsureLogin = require('connect-ensure-login');
+// const connectEnsureLogin = require('connect-ensure-login');
+
+const {connectEnsureLogin, forwardAuthenticated, ensureAuthenticated} = require('../config/auth');
 
 const User = require('../models/User'); 
 
-router.get('/', (req, res) => {
+
+router.get('/', forwardAuthenticated ,(req, res) => {
     res.render('index');
 });
 
-router.get('/about', (req, res) => { 
+router.get('/about',forwardAuthenticated, (req, res) => { 
     res.send('about page')
 });
 
-router.get('/signin', (req, res) => {
+router.get('/signin', forwardAuthenticated,(req, res) => {
     res.render('signin')  
 })
 
@@ -32,7 +35,7 @@ router.post('/signin', (req, res, next) => {
 }); 
 
 //testing route
-router.get('/test',(req, res) => {
+router.get('/test',ensureAuthenticated,(req, res) => {
     console.log('testRoute entered');
     res.render('createPost');
 });
@@ -45,7 +48,7 @@ router.get('/fail', (req, res) => {
 });
 
 
-router.post('/signup', async (req, res) => {
+router.post('/signup', forwardAuthenticated,async (req, res) => {
 
     // check if any fields are empty
     if(req.body.username === '' || req.body.email === '' || req.body.password === '' || req.body.confirm === '') {
