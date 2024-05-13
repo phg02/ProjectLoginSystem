@@ -1,7 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const router = express.Router();
-const bycrypt = require('bcrypt');
+const bycrypt = require('bcryptjs');
 const passport = require('passport');
 // const connectEnsureLogin = require('connect-ensure-login');
 
@@ -37,8 +37,20 @@ router.post('/signin', (req, res, next) => {
 //testing route
 router.get('/test',ensureAuthenticated,(req, res) => {
     console.log('testRoute entered');
-    res.render('createPost');
+    res.render('logout');
 });
+
+// router.get('/logout',(req, res) => {
+//     req.logout();
+//     res.redirect('/signin');
+// })
+
+router.get('/logout', function(req, res, next) {
+    req.logout(function(err) {
+      if (err) { return next(err); }
+      res.redirect('/');
+    });
+  });
 
 router.get('/signup', (req, res) => {
     res.render('signup')
@@ -80,8 +92,8 @@ router.post('/signup', forwardAuthenticated,async (req, res) => {
         res.send('created');
     }
     catch(err) { 
-        res.send('error creating user');
-        console.log(err);
+        res.render('signupError');
+        // console.log(err);
      }
 });
 

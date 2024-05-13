@@ -1,0 +1,53 @@
+@import "shared/fonts.css";
+@import "shared/variables.css";
+@import "shared/buttons.css";
+@import "shared/form.css";
+html {
+    scroll-behavior: smooth;
+  }
+body{
+    height: 100vh;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.navbar-light {
+  background-color: var(--primary-bg-color) !important;
+}
+nav h4 {
+  color: #7f4b23 !important;
+}
+nav {
+  display: block;
+  position: fixed;
+  font-family: 'Kreon', sans-serif;
+  width: 100%;
+  height: 8vh;
+}
+
+.page{
+    height: 100vh;
+    /* padding-top: 4rem; */
+    width: 100%;
+    background-color: var(--primary-bg-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.err-msg{
+    max-width: 30%;
+    min-width: 300px;
+    padding: 2rem;
+    border-radius: 2rem;
+    background-color: white;
+}
+.btn-container{
+    text-align: center;
+}
+.icon{
+    text-align: center;
+    font-size: 5rem;
+}
+.err-li{
+    font-family: 'Inter', 'san-serif';
+}
