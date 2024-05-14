@@ -1,0 +1,239 @@
+ *, *::after, *::before {
+    box-sizing: border-box;
+  }
+  
+  :root{
+    font-size: 17px;
+    --background-color: rgb(255, 253, 245);
+    --font-color: rgb(51, 51, 51);
+  }
+  body[data-theme="dark"] {
+    --background-color: rgb(35, 40, 48);
+    --font-color: rgb(247, 247, 247);
+  }
+  
+  body {
+    color: var(--font-color);
+    background-color: var(--background-color);
+    margin: 0;
+    padding: 0;
+  }
+  
+  .main {
+    display: flex;
+    width: 100vw;
+  }
+  
+  .wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+  }
+  .wrapper img{
+    width: 100%;
+  }
+  .search-bar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .top {
+    display: flex;
+    gap: 10px;
+  }
+  .search {
+    display: flex;
+  }
+  .search input {
+    padding: 5px 5px 5px 10px;
+    border: 3px solid #8D8D8D;
+    border-bottom-left-radius: 18px;
+    border-top-left-radius: 18px;
+    width: 17rem;
+    height: 35px;
+  }
+  
+  .search button {
+    padding: 5px;
+    background-color: #8D8D8D;
+    border: 3px solid #8D8D8D;
+    border-bottom-right-radius: 18px;
+    border-top-right-radius: 18px;
+    font-size: large;
+    color: #fff;
+    height: 35px;
+    width: 40px;
+  }
+  
+  .search button:hover {
+    color: #000;
+    cursor: pointer;
+  }
+  select {
+    padding: 7px 0px 7px 5px;
+    border-radius: 18px;
+    background-color: rgb(255, 255, 255);
+    border: 2px solid #8D8D8D;
+  }
+  .cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 60px 0px;
+    gap: 9rem;
+  }
+  .card{
+    width: 200px;
+    max-width: 90%;
+    height: 300px;
+    border: 1px solid #988270;
+    background-color: rgba(255, 255, 255, 0.47);
+    border-radius: 14px;
+    display: flex;
+    flex-direction: column;
+  }
+  .card img{
+    border-top-left-radius: 13px;
+    border-top-right-radius: 13px;
+  }
+  .description{
+    padding: 8px 10px;
+  }
+  .money{
+    font-size: 12px;
+    font-weight: 200;
+    color: grey;
+  }
+  .btn{
+    display: flex;
+    justify-content: flex-end;
+    padding: 12px 10px;
+  }
+  .see-more{
+    font-size: 13px;
+    font-weight: 200;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #b8938b;
+    color: #FFFDF5;
+    border-radius: 15px;
+    width: 80px;
+    height: 25px;
+  }
+  
+
+  .navbar {
+    width: 12rem;
+    height: 100vh;
+    position: fixed;
+    background-color: #fffdf5;
+    border-right: 1px solid #b8938b;
+  }
+  
+  .nav-list {
+    list-style: none;
+    padding: 0 1.2rem;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .nav-item {
+    width: 100%;
+  }
+  
+  .nav-link:hover {
+    color: #b6845c;
+  }
+  
+  .nav-link:active {
+    color: #e2ad83;
+  }
+  
+  .nav-link {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    text-decoration: none;
+    height: 4rem;
+    color: #7f4b23;
+  }
+
+  @media only screen and (max-width: 1300px) {
+    .navbar {
+      width: 4rem;
+    }
+  
+    .nav-link p {
+      display: none;
+    }
+  }
+  
+  @media only screen and (max-width: 1000px) {
+  
+    .navbar {
+      bottom: 0;
+      width: 100vw;
+      height: 4rem;
+      border-top: 2px solid #b8938b;
+    }
+  
+    .nav-list {
+      flex-direction: row;
+    }
+  
+    .nav-link {
+      justify-content: center;
+    }
+  
+    .nav-link p {
+      display: none;
+    }
+  
+    .modal{
+      height: 500px;
+    }
+    .search input {
+      padding: 5px 5px 5px 10px;
+      border: 3px solid #8D8D8D;
+      border-bottom-left-radius: 18px;
+      border-top-left-radius: 18px;
+      width: 8rem;
+      height: 35px;
+    }
+    
+    .search button {
+      padding: 5px;
+      background-color: #8D8D8D;
+      border: 3px solid #8D8D8D;
+      border-bottom-right-radius: 18px;
+      border-top-right-radius: 18px;
+      font-size: large;
+      color: #fff;
+      height: 35px;
+      width: 25px;
+      display:flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .sortby select{
+      height:35px;
+      width: 125px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+    }
+    .top {
+      display: flex;
+      gap: 20px;
+    }
+    .cards{
+      gap: 7rem;
+    }
+
+  }
+  

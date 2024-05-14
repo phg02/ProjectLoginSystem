@@ -5,9 +5,23 @@ const bycrypt = require('bcryptjs');
 const passport = require('passport');
 // const connectEnsureLogin = require('connect-ensure-login');
 
-const {connectEnsureLogin, forwardAuthenticated, ensureAuthenticated} = require('../config/auth');
+const { forwardAuthenticated, ensureAuthenticated, ensureAuthenticatedAdmin} = require('../config/auth');
 
 const User = require('../models/User'); 
+
+
+// let hehe =async ()=>{
+//     let adminPassword = await bycrypt.hash('M@tkhau123', 10);
+//     const admin = new User({
+//         username: 'admin',
+//         email: 'admin@gmail.com',
+//         password: adminPassword,
+//         admin: true,
+//     })
+//     await admin.save();
+//     console.log(admin);
+// }
+// hehe();
 
 
 router.get('/', forwardAuthenticated ,(req, res) => {
@@ -34,11 +48,42 @@ router.post('/signin', (req, res, next) => {
     console.log('test');
 }); 
 
+router.get('/admin',ensureAuthenticated, ensureAuthenticatedAdmin,(req, res) => {
+    res.send('admin');
+})
+
 //testing route
 router.get('/test',ensureAuthenticated,(req, res) => {
+    if(req.user.admin===true) {
+        res.send('admin');
+        return;
+    }
     console.log('testRoute entered');
     res.render('logout');
 });
+
+router.get('/community',ensureAuthenticated ,(req, res) => {
+    res.render('community', {user: req.user});
+});
+router.get('/setting',ensureAuthenticated ,(req, res) => {
+    console.log('user current theme '+req.user.theme);
+    res.render('setting', {user: req.user});
+});
+router.put('/updatetheme',ensureAuthenticated, async (req, res)=>{
+    let user = await User.findById(req.user.id);
+    console.log('update theme')
+    console.log(req.body.switchTheme);
+    if(req.body.switchTheme){
+        console.log('dark');
+        user.theme = 'dark';
+    }
+    else{
+        console.log('light');
+        user.theme = 'light';
+    }
+    await user.save();
+    res.redirect('/setting');
+})
 
 // router.get('/logout',(req, res) => {
 //     req.logout();

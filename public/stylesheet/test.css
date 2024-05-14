@@ -1,0 +1,29 @@
+.post {
+    width: 300px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+  
+.post-title {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin: 0;
+}
+  
+.post-title.expanded {
+  white-space: normal;
+}
+  
+.see-more-btn {
+  background-color: #0084ff;
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+  
+.see-more-btn:hover {
+  background-color: #0056b3;
+}

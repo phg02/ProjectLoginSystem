@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Community</title>
+    <link rel="stylesheet" href="stylesheet/community.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://kit.fontawesome.com/797e28e901.js" crossorigin="anonymous"></script>
+</head>
+
+<%if (user.theme === 'light'){%>
+    <body>
+    <%} else{%>
+    <body data-theme="dark">
+    <%}%>
+
+    <div class="main">
+        <nav class="navbar">
+            <ul class="nav-list">
+                <li class="nav-item">
+                    <a href="community.html" class="nav-link">
+                        <i class="fa-solid fa-people-group"></i>
+                        <p class="nav-text">Community</p>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="adoption.html" class="nav-link">
+                        <i class="fa-solid fa-cart-shopping"></i>
+                        <p class="nav-text">Adoption</p>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="fa-solid fa-square-plus"></i>
+                        <p class="nav-text">Create post</p>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="profile-post.html" class="nav-link">
+                        <i class="fa-solid fa-user"></i>
+                        <p class="nav-text">Profile</p>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="setting.html" class="nav-link">
+                        <i class="fa-solid fa-gear"></i>
+                        <p class="nav-text">Setting</p>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+        <div class="wrapper">
+            <form>
+                <div class="search-bar">
+                    <div class="top">
+                        <div class="search">
+                            <input type="text" placeholder="Search...">
+                            <button><i class="fa-solid fa-magnifying-glass"></i></button>
+                        </div>
+                        <div class="sortby">
+                            <select name="sortby" id="sortby">
+                                <option disabled selected>Sort by</option> 
+                                <option>Earliest post</option>
+                                <option>Latest post</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="bottom">
+                        <p>Filter by date:</p>
+                        <div class="start-date">
+                            <input type="date">
+                        </div>
+                        <div class="end-date">
+                            <input type="date">
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+            <div class="cards">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="header-name">
+                            <img src="images/dogcol1.jpg" alt="dog">
+                            <p>Username . dd/mm/yyyy</p>
+                        </div>
+                        <p>Lorem ipsum</p>
+                        <p class="post-title">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas
+                            doloribus
+                            error eligendi explicabo esse distinctio placeat blanditiis? Nesciunt, eaque, cupiditate
+                            tempore
+                            vero sed doloribus quae numquam asperiores saepe, pariatur illum.</p>
+                        <button class="see-more-btn">See more</button>
+                    </div>
+
+                    <div class="card-body">
+                        <img src="images/catcol1.jpg" alt="dog">
+                    </div>
+
+                    <div class="card-footer">
+                        <form>
+                            <div class="heart-container" title="Like">
+                                <input type="checkbox" class="checkbox" id="Give-It-An-Id">
+                                <div class="svg-container">
+                                    <svg viewBox="0 0 24 24" class="svg-outline" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M17.5,1.917a6.4,6.4,0,0,0-5.5,3.3,6.4,6.4,0,0,0-5.5-3.3A6.8,6.8,0,0,0,0,8.967c0,4.547,4.786,9.513,8.8,12.88a4.974,4.974,0,0,0,6.4,0C19.214,18.48,24,13.514,24,8.967A6.8,6.8,0,0,0,17.5,1.917Zm-3.585,18.4a2.973,2.973,0,0,1-3.83,0C4.947,16.006,2,11.87,2,8.967a4.8,4.8,0,0,1,4.5-5.05A4.8,4.8,0,0,1,11,8.967a1,1,0,0,0,2,0,4.8,4.8,0,0,1,4.5-5.05A4.8,4.8,0,0,1,22,8.967C22,11.87,19.053,16.006,13.915,20.313Z">
+                                        </path>
+                                    </svg>
+                                    <svg viewBox="0 0 24 24" class="svg-filled" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M17.5,1.917a6.4,6.4,0,0,0-5.5,3.3,6.4,6.4,0,0,0-5.5-3.3A6.8,6.8,0,0,0,0,8.967c0,4.547,4.786,9.513,8.8,12.88a4.974,4.974,0,0,0,6.4,0C19.214,18.48,24,13.514,24,8.967A6.8,6.8,0,0,0,17.5,1.917Z">
+                                        </path>
+                                    </svg>
+                                    <svg class="svg-celebrate" width="100" height="100" xmlns="http://www.w3.org/2000/svg">
+                                        <polygon points="10,10 20,20"></polygon>
+                                        <polygon points="10,50 20,50"></polygon>
+                                        <polygon points="20,80 30,70"></polygon>
+                                        <polygon points="90,10 80,20"></polygon>
+                                        <polygon points="90,50 80,50"></polygon>
+                                        <polygon points="80,80 70,70"></polygon>
+                                    </svg>
+                                </div>
+                            </div>
+                            <p>100</p>
+                        </form>
+                        
+                        <div>
+                            <div type="button" class="commentBtn" data-modal-target="#modal">
+                                <i class="fa-regular fa-comment d-inline"></i>
+                            </div>
+                            <p>100</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <div class="header-name">
+                            <img src="images/dogcol1.jpg" alt="dog">
+                            <p>Username . dd/mm/yyyy</p>
+                        </div>
+                        <p>Lorem ipsum</p>
+                        <p class="post-title">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas
+                            doloribus
+                            error eligendi explicabo esse distinctio placeat blanditiis? Nesciunt, eaque, cupiditate
+                            tempore
+                            vero sed doloribus quae numquam asperiores saepe, pariatur illum.</p>
+                        <button class="see-more-btn">See more</button>
+                    </div>
+
+                    <div class="card-footer">
+                        <form>
+                            <div class="heart-container" title="Like">
+                                <input type="checkbox" class="checkbox" id="Give-It-An-Id">
+                                <div class="svg-container">
+                                    <svg viewBox="0 0 24 24" class="svg-outline" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M17.5,1.917a6.4,6.4,0,0,0-5.5,3.3,6.4,6.4,0,0,0-5.5-3.3A6.8,6.8,0,0,0,0,8.967c0,4.547,4.786,9.513,8.8,12.88a4.974,4.974,0,0,0,6.4,0C19.214,18.48,24,13.514,24,8.967A6.8,6.8,0,0,0,17.5,1.917Zm-3.585,18.4a2.973,2.973,0,0,1-3.83,0C4.947,16.006,2,11.87,2,8.967a4.8,4.8,0,0,1,4.5-5.05A4.8,4.8,0,0,1,11,8.967a1,1,0,0,0,2,0,4.8,4.8,0,0,1,4.5-5.05A4.8,4.8,0,0,1,22,8.967C22,11.87,19.053,16.006,13.915,20.313Z">
+                                        </path>
+                                    </svg>
+                                    <svg viewBox="0 0 24 24" class="svg-filled" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M17.5,1.917a6.4,6.4,0,0,0-5.5,3.3,6.4,6.4,0,0,0-5.5-3.3A6.8,6.8,0,0,0,0,8.967c0,4.547,4.786,9.513,8.8,12.88a4.974,4.974,0,0,0,6.4,0C19.214,18.48,24,13.514,24,8.967A6.8,6.8,0,0,0,17.5,1.917Z">
+                                        </path>
+                                    </svg>
+                                    <svg class="svg-celebrate" width="100" height="100" xmlns="http://www.w3.org/2000/svg">
+                                        <polygon points="10,10 20,20"></polygon>
+                                        <polygon points="10,50 20,50"></polygon>
+                                        <polygon points="20,80 30,70"></polygon>
+                                        <polygon points="90,10 80,20"></polygon>
+                                        <polygon points="90,50 80,50"></polygon>
+                                        <polygon points="80,80 70,70"></polygon>
+                                    </svg>
+                                </div>
+                            </div>
+                            <p>100</p>
+                        </form>
+                        
+                        <div>
+                            <div type="button" class="commentBtn" data-modal-target="#modal1">
+                                <i class="fa-regular fa-comment d-inline"></i>
+                            </div>
+                            <p>100</p>
+                        </div>
+                    </div>
+                </div>  
+                      
+            </div>
+        </div>
+
+    </div>
+
+    <div class="modal" id="modal">
+        <div class="modal-header">
+            <div class="information">
+                <div class="infor">
+                    <img src="images/dogcol1.jpg" alt="dog">
+                    <p>Username . dd/mm/yyyy</p>
+                </div>
+
+                <button data-close-button class="close-button">&times;</button>
+            </div>
+        </div>
+
+        <div class="modal-body">
+            <div class="text">
+                <p>Lorem ipsum</p>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas doloribus error eligendi explicabo
+                    esse distinctio placeat blanditiis? Nesciunt, eaque, cupiditate tempore vero sed doloribus quae
+                    numquam asperiores saepe, pariatur illum.</p>
+            </div>
+            <img src="images/catcol1.jpg" alt="dog">
+        </div>
+
+        <div class="modal-footer">
+            <div class="cmt-section">
+                <img src="images/dogcol1.jpg" alt="dog">
+
+                <div class="content">
+                    <div class="username">Username</div>
+                    <div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas doloribus error eligendi
+                        explicabo esse distinctio placeat blanditiis? Nesciunt, eaque, cupiditate tempore vero sed
+                        doloribus quae numquam asperiores saepe, pariatur illum.</div>
+                </div>
+            </div>
+
+
+            <div class="modal-cmt">
+                <img src="images/dogcol1.jpg" alt="dog">
+                <form>
+                    <input type="text" class="comment-input" placeholder="Write a comment...">
+                    <button id="comment-btn">Comment</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="modal1">
+        <div class="modal-header">
+            <div class="information">
+                <div class="infor">
+                    <img src="images/dogcol1.jpg" alt="dog">
+                    <p>Username . dd/mm/yyyy</p>
+                </div>
+
+                <button data-close-button class="close-button">&times;</button>
+            </div>
+        </div>
+
+        <div class="modal-body">
+            <div class="text">
+                <p>Lorem ipsum</p>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas doloribus error eligendi explicabo
+                    esse distinctio placeat blanditiis? Nesciunt, eaque, cupiditate tempore vero sed doloribus quae
+                    numquam asperiores saepe, pariatur illum.</p>
+            </div>
+        </div>
+
+        <div class="modal-footer">
+            <div class="cmt-section">
+                <img src="images/dogcol1.jpg" alt="dog">
+
+                <div class="content">
+                    <div class="username">Username</div>
+                    <div class="text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas doloribus error eligendi
+                        explicabo esse distinctio placeat blanditiis? Nesciunt, eaque, cupiditate tempore vero sed
+                        doloribus quae numquam asperiores saepe, pariatur illum.</div>
+                </div>
+            </div>
+
+
+            <div class="modal-cmt">
+                <img src="images/dogcol1.jpg" alt="dog">
+                <form>
+                    <input type="text" class="comment-input" placeholder="Write a comment...">
+                    <button id="comment-btn">Comment</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div id="overlay"></div>
+
+    <script src="javascript/community.js"></script>
+</body>
+
+</html>

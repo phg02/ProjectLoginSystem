@@ -41,10 +41,10 @@ module.exports = (passport) => {
         });
 
         passport.deserializeUser((id, done) => {
-            console.log(id);
+            // console.log(id);
             User.findById(id)
                 .then((user) => {
-                    console.log(user)
+                    // console.log(user)
                     done(null, user);
                 })
                 .catch((err) => {

@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="stylesheet//setting.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://kit.fontawesome.com/797e28e901.js" crossorigin="anonymous"></script>
+</head>
+<%if (user.theme === 'light'){%>
+<body>
+<%} else{%>
+<body data-theme="dark">
+<%}%>
+
+    <div class="main">
+
+        <div class="wrapper">
+            <div class="photo">
+                <div class="info">
+                    <img src="images/dogcol1.jpg" alt="profile">
+                    <p>Username</p>
+                </div>
+
+                <button data-modal-target="#photoModal" class="settingBtn">Change photo</button>
+            </div>
+
+            <div class="theme box">
+                <p>Change theme(dark/light)</p>
+                <form action="/updatetheme?_method=PUT" method="POST" onclick="clickFn(event)" id="themeForm">
+                <label class="switch">
+                    <% if(user.theme == 'light'){%>
+                    <input type="checkbox" id="switchTheme" name="switchTheme">
+                    <%}else{%>
+                    <input type="checkbox" id="switchTheme" name="switchTheme" checked>
+                    <%}%>
+                    <span class="slider"></span>
+                </label>
+                </form>
+            </div>
+
+            <div class="username box">
+                <p>Change Username</p>
+                <button data-modal-target="#usernameModal" class="settingBtn">Change username</button>
+            </div>
+
+            <div class="password box">
+                <p>Change Password</p>
+                <button data-modal-target="#passwordModal" class="settingBtn">Change password</button>
+            </div>
+
+            <div class="deactivate box">
+                <p>Deactivate account</p>
+                <button data-modal-target="#deactivateModal" class="settingBtn">Deactivate account</button>
+            </div>
+            
+            <button class="logoutBtn">Logout</button>
+        </div>
+        
+        <nav class="navbar">
+            <ul class="nav-list">
+                <li class="nav-item">
+                    <a href="community.html" class="nav-link">
+                        <i class="fa-solid fa-people-group"></i>
+                        <p class="nav-text">Community</p>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="adoption.html" class="nav-link">
+                        <i class="fa-solid fa-cart-shopping"></i>
+                        <p class="nav-text">Adoption</p>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="fa-solid fa-square-plus"></i>
+                        <p class="nav-text">Create post</p>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="profile-post.html" class="nav-link">
+                        <i class="fa-solid fa-user"></i>
+                        <p class="nav-text">Profile</p>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="setting.html" class="nav-link">
+                        <i class="fa-solid fa-gear"></i>
+                        <p class="nav-text">Setting</p>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+
+    <div class="modal" id="photoModal">
+        <div class="modal-header">
+            <div class="title">Photo Modal</div>
+            <button data-close-button class="close-button">&times;</button>
+        </div>
+    
+        <div class="modal-body">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse quod alias ut illo doloremque eum ipsum obcaecati distinctio debitis reiciendis quae quia soluta totam doloribus quos nesciunt necessitatibus, consectetur quisquam accusamus ex, dolorum, dicta vel? Nostrum voluptatem totam, molestiae rem at ad autem dolor ex aperiam. Amet assumenda eos architecto, dolor placeat deserunt voluptatibus tenetur sint officiis perferendis atque! Voluptatem maxime eius eum dolorem dolor exercitationem quis iusto totam! Repudiandae nobis nesciunt sequi iure! Eligendi, eius libero. Ex, repellat sapiente.
+        </div>
+    </div>
+
+    <div class="modal" id="usernameModal">
+        <div class="modal-header">
+            <div class="title">Username Modal</div>
+            <button data-close-button class="close-button">&times;</button>
+        </div>
+    
+        <div class="modal-body">
+            <form>
+                <label for="username">Enter new username</label>
+                <input type="text" id="username" name="username" required>
+                <button type="submit">Change username</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="modal" id="passwordModal">
+        <div class="modal-header">
+            <div class="title">Change password</div>
+            <button data-close-button class="close-button">&times;</button>
+        </div>
+    
+        <div class="modal-body">
+           <form>
+                <label for="oldPassword">Enter old Password</label>
+                <input type="password" id="oldPassword" name="oldPassword" required>
+                <div class="error">
+                    <li>Old password is incorrect</li>
+                </div>
+
+                <label for="newPassword">Enter new Password</label>
+                <input type="password" id="newPassword" name="newPassword" required>
+                <div class="error">
+                    <li>Password must be at least 8 characters</li>
+                    <li>Password must contain at least one uppercase letter</li>
+                    <li>Password must contain at least one lowercase letter</li>
+                    <li>Password must contain at least one number</li>
+                </div>
+
+                <label for="confirmPassword">Enter confirm Password</label>
+                <input type="password" id="confirmPassword" name="confirmPassword" required>
+                <div class="error">
+                    <li>Password does not match</li>
+                </div>
+
+                <button type="submit">Change password</button>
+           </form>
+        </div>
+    </div>
+
+    <div class="modal" id="deactivateModal">
+        <div class="modal-header">
+            <button data-close-button class="close-button">&times;</button>
+        </div>
+    
+        <div class="modal-body">
+            <p>Are you sure you want to deactivate your account????</p>
+            <div>
+                <button class="deactivateBtn">Deactivate</button>
+                <button class="cancelBtn">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="overlay"></div>
+    
+
+    <script src="javascript/setting.js"></script>
+</body>
+</html>
