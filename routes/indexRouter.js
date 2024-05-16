@@ -90,6 +90,78 @@ router.put('/updatetheme',ensureAuthenticated, async (req, res)=>{
 //     res.redirect('/signin');
 // })
 
+//testing route for array
+router.get('/array', async (req, res) => {
+    let id = [];
+    let all = await User.find()
+                    .then(users =>{
+                        users.forEach(user => {
+                            id.push(user.id);
+                        })
+                    })
+    console.log(id);
+    
+    // all.forEach(user => {
+    //     id.push(user.id);
+    // })
+    // for(let user of all){
+    //     id.push(user.id);
+    // }
+    // console.log(id);
+    res.send('array');
+})
+
+
+//update username
+router.put('/updateUsername',ensureAuthenticated, async (req, res) => {
+    try{
+        if(req.body.username === ''){
+            throw new Error('username cannot be empty');
+        }
+        let user = await User.findById(req.user.id);
+        user.username = req.body.username;
+        console.log('update username');
+        await user.save();
+        res.redirect('/setting');
+    }
+    catch{
+        res.send('error');
+    }
+   
+});
+
+//update password
+router.put('/updatePassword',ensureAuthenticated, async (req, res) => {
+    try{
+        if(res.body.newPassword === ''){
+            throw new Error('password cannot be empty');
+
+        }
+        if(res.body.newPassword.length < 8){
+            throw new Error('password must be at least 8 characters');
+        }
+        if(res.body.newPassword != res.body.confirm){
+            throw new Error('passwords do not match');
+        }
+        let userChange = await User.findById(req.user.id);
+        if(bycrypt.compare(req.body.oldPassword, userChange.password)){
+            userChange.password = bycrypt.hash(req.body.newPassword, 10);
+            // await userChange.save();
+            console.log(user);
+            res.redirect('/setting');
+        }
+        else{
+            throw new Error('wrong password');
+        }
+    }
+    catch(err){
+        res.send(err);
+    }
+    
+
+});
+
+
 router.get('/logout', function(req, res, next) {
     req.logout(function(err) {
       if (err) { return next(err); }
