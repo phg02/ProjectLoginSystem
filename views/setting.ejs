@@ -131,30 +131,37 @@
         </div>
     
         <div class="modal-body">
-           <form>
-                <label for="oldPassword">Enter old Password</label>
-                <input type="password" id="oldPassword" name="oldPassword" required>
-                <div class="error">
-                    <li>Old password is incorrect</li>
+            <form id="passwordChange" action="/updatePassword?_method=PUT" method="POST" >
+                <div class="password-container">
+                    <label for="oldPassword">Enter old Password</label>
+                    <div class="form__input">
+                        <input type="password" id="oldPassword" name="oldPassword" placeholder="Old password" required>
+                        <span><i class="fa-regular fa-eye-slash"></i></span>
+                    </div>
+                    <div class="error" id="oldPasswordError"></div>
                 </div>
 
-                <label for="newPassword">Enter new Password</label>
-                <input type="password" id="newPassword" name="newPassword" required>
-                <div class="error">
-                    <li>Password must be at least 8 characters</li>
-                    <li>Password must contain at least one uppercase letter</li>
-                    <li>Password must contain at least one lowercase letter</li>
-                    <li>Password must contain at least one number</li>
+                <div class="password-container">
+                    <label for="newPassword">Enter new Password</label>
+                    <div class="form__input">
+                        <input type="password" id="newPassword" name="newPassword" placeholder="New password" required>
+                        <span><i class="fa-regular fa-eye-slash"></i></span>
+                    </div>
+                    <div class="error" id="newPasswordError"></div>
                 </div>
 
-                <label for="confirmPassword">Enter confirm Password</label>
-                <input type="password" id="confirmPassword" name="confirmPassword" required>
-                <div class="error">
-                    <li>Password does not match</li>
+                <div class="password-container">
+                    <label for="confirmPassword">Enter confirm Password</label>
+                    <div class="form__input">
+                        <input type="password" id="confirmPassword" name="confirmPassword"
+                            placeholder="Confirm password" required>
+                        <span><i class="fa-regular fa-eye-slash"></i></span>
+                    </div>
+                    <div class="error" id="confirmPasswordError"></div>
                 </div>
-
-                <button type="submit">Change password</button>
-           </form>
+                
+               <button type="submit">Change password</button>
+            </form>
         </div>
     </div>
 

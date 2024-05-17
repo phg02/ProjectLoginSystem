@@ -133,29 +133,39 @@ router.put('/updateUsername',ensureAuthenticated, async (req, res) => {
 //update password
 router.put('/updatePassword',ensureAuthenticated, async (req, res) => {
     try{
-        if(res.body.newPassword === ''){
-            throw new Error('password cannot be empty');
-
-        }
-        if(res.body.newPassword.length < 8){
-            throw new Error('password must be at least 8 characters');
-        }
-        if(res.body.newPassword != res.body.confirm){
-            throw new Error('passwords do not match');
-        }
+        //find user old password
         let userChange = await User.findById(req.user.id);
-        if(bycrypt.compare(req.body.oldPassword, userChange.password)){
-            userChange.password = bycrypt.hash(req.body.newPassword, 10);
-            // await userChange.save();
-            console.log(user);
-            res.redirect('/setting');
+        //check if old password is correct
+        if(await bycrypt.compare(req.body.oldPassword, userChange.password)){
+            userChange.password = await bycrypt.hash(req.body.newPassword, 10);
+           
         }
         else{
             throw new Error('wrong password');
         }
+        //check if new password is empty
+        if(req.body.newPassword === ''){
+            throw new Error('new password cannot be empty');
+        }
+        //check if new password is less than 8 characters
+        if(req.body.newPassword.length < 8){
+            throw new Error('new password must be at least 8 characters');
+        }
+        //check if new password and confirm password match
+        if(req.body.newPassword != req.body.confirmPassword){
+            throw new Error('new passwords do not match');
+        }
+        //check if new password is same as old password
+        if(req.body.old === req.body.newPassword){
+            throw new Error('new password cannot be same as old');
+
+        }
+        console.log(userChange);
+        res.send('password changed');
     }
     catch(err){
-        res.send(err);
+        console.log(err);
+        res.send(err.message)
     }
     
 
