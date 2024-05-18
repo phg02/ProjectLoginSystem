@@ -145,11 +145,11 @@ router.put('/updatePassword',ensureAuthenticated, async (req, res) => {
         }
         //check if new password is empty
         if(req.body.newPassword === ''){
-            throw new Error('new password cannot be empty');
+            throw new Error('New password cannot be empty');
         }
         //check if new password is less than 8 characters
         if(req.body.newPassword.length < 8){
-            throw new Error('new password must be at least 8 characters');
+            throw new Error('New password must be at least 8 characters');
         }
         //check if new password and confirm password match
         if(req.body.newPassword != req.body.confirmPassword){
@@ -157,15 +157,14 @@ router.put('/updatePassword',ensureAuthenticated, async (req, res) => {
         }
         //check if new password is same as old password
         if(req.body.old === req.body.newPassword){
-            throw new Error('new password cannot be same as old');
+            throw new Error('New password cannot be same as old');
 
         }
-        console.log(userChange);
-        res.send('password changed');
+        await userChange.save();
+        res.render('successSetting', {user: req.user});
     }
     catch(err){
-        console.log(err);
-        res.send(err.message)
+        res.render('settingError', {user: req.user ,error: err.message});
     }
     
 

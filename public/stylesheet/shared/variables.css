@@ -2,4 +2,19 @@
     --primary-bg-color: #faf3d8;
     --secodary-bg-color: #D7DACA;
     --footer-bg-color: #C8D7E2;
+    --primary-text-color: #7f4b23;
+    --primary-major-bg-color:#fffdf5;
+    --border-color:#b8938b;
+    --primary-label-color: #7F4B23;
+    --input-bg-color: #F8EEDF;
+    --form-bg-color: #F8EEDF;
+
+    body[data-theme="dark"]{
+        --primary-text-color: #DEE9FF;
+        --primary-major-bg-color:#232830;
+        --border-color:white;
+        --primary-label-color: #DEE9FF;
+        --form-bg-color: #82AAAD;
+        --input-bg-color: #82AAAD;
+    }
 }
