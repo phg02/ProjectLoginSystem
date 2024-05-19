@@ -20,9 +20,17 @@ const userSchema = new mongoose.Schema({
         type: Boolean,
         default: false
     },
+    profile:{
+        type: String,
+        default: '/images/profile.jpeg'
+    },
     theme: {
         type: String,
         default: 'light'
+    },
+    activated: {
+        type: Boolean,
+        default: true
     },
     dateCreated: {
         type: Date,

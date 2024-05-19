@@ -19,7 +19,7 @@
         <div class="wrapper">
             <div class="photo">
                 <div class="info">
-                    <img src="images/dogcol1.jpg" alt="profile">
+                    <img src="/images/profile.png" alt="profile">
                     <p>Username</p>
                 </div>
 
@@ -51,8 +51,14 @@
             </div>
 
             <div class="deactivate box">
-                <p>Deactivate account</p>
-                <button data-modal-target="#deactivateModal" class="settingBtn">Deactivate account</button>
+                
+                <% if(user.activated == true){%>
+                    <p>Deactivate account</p>
+                    <button data-modal-target="#deactivateModal" class="settingBtn">Deactivate account</button>
+                <%} else{%>
+                    <p>Activate account</p>
+                    <button data-modal-target="#deactivateModal" class="settingBtn">Activate account</button>
+                <%}%>
             </div>
             
             <button class="logoutBtn">Logout</button>
@@ -171,9 +177,21 @@
         </div>
     
         <div class="modal-body">
-            <p>Are you sure you want to deactivate your account????</p>
+            <% if(user.activated == true){%>
+                <p>Are you sure you want to deactivate your account?</p>
+            <%} else{%>
+                <p>Are you sure you want to activate your account?</p>
+            <%}%>
             <div>
-                <button class="deactivateBtn">Deactivate</button>
+                <% if(user.activated == true){%>
+                    <form action="/deactivate?_method=PUT" method="POST">
+                        <button class="deactivateBtn" type="submit">Deactivate</button>
+                    </form>
+                <%} else{%>
+                    <form action="/activate?_method=PUT" method="POST">
+                        <button class="deactivateBtn" type="submit">Activate</button>
+                    </form>
+                <%}%>
                 <button class="cancelBtn">Cancel</button>
             </div>
         </div>

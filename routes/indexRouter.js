@@ -5,9 +5,9 @@ const bycrypt = require('bcryptjs');
 const passport = require('passport');
 // const connectEnsureLogin = require('connect-ensure-login');
 
-const { forwardAuthenticated, ensureAuthenticated, ensureAuthenticatedAdmin} = require('../config/auth');
+const { forwardAuthenticated, ensureAuthenticated, ensureAuthenticatedAdmin } = require('../config/auth');
 
-const User = require('../models/User'); 
+const User = require('../models/User');
 
 
 // let hehe =async ()=>{
@@ -24,16 +24,16 @@ const User = require('../models/User');
 // hehe();
 
 
-router.get('/', forwardAuthenticated ,(req, res) => {
+router.get('/', forwardAuthenticated, (req, res) => {
     res.render('index');
 });
 
-router.get('/about',forwardAuthenticated, (req, res) => { 
+router.get('/about', forwardAuthenticated, (req, res) => {
     res.send('about page')
 });
 
-router.get('/signin', forwardAuthenticated,(req, res) => {
-    res.render('signin')  
+router.get('/signin', forwardAuthenticated, (req, res) => {
+    res.render('signin')
 })
 
 router.post('/signin', (req, res, next) => {
@@ -46,15 +46,15 @@ router.post('/signin', (req, res, next) => {
     //     message: 'success'
     // })
     console.log('test');
-}); 
+});
 
-router.get('/admin',ensureAuthenticated, ensureAuthenticatedAdmin,(req, res) => {
+router.get('/admin', ensureAuthenticated, ensureAuthenticatedAdmin, (req, res) => {
     res.send('admin');
 })
 
 //testing route
-router.get('/test',ensureAuthenticated,(req, res) => {
-    if(req.user.admin===true) {
+router.get('/test', ensureAuthenticated, (req, res) => {
+    if (req.user.admin === true) {
         res.send('admin');
         return;
     }
@@ -62,22 +62,22 @@ router.get('/test',ensureAuthenticated,(req, res) => {
     res.render('logout');
 });
 
-router.get('/community',ensureAuthenticated ,(req, res) => {
-    res.render('community', {user: req.user});
+router.get('/community', ensureAuthenticated, (req, res) => {
+    res.render('community', { user: req.user });
 });
-router.get('/setting',ensureAuthenticated ,(req, res) => {
-    console.log('user current theme '+req.user.theme);
-    res.render('setting', {user: req.user});
+router.get('/setting', ensureAuthenticated, (req, res) => {
+    console.log('user current theme ' + req.user.theme);
+    res.render('setting', { user: req.user });
 });
-router.put('/updatetheme',ensureAuthenticated, async (req, res)=>{
+router.put('/updatetheme', ensureAuthenticated, async (req, res) => {
     let user = await User.findById(req.user.id);
     console.log('update theme')
     console.log(req.body.switchTheme);
-    if(req.body.switchTheme){
+    if (req.body.switchTheme) {
         console.log('dark');
         user.theme = 'dark';
     }
-    else{
+    else {
         console.log('light');
         user.theme = 'light';
     }
@@ -94,13 +94,13 @@ router.put('/updatetheme',ensureAuthenticated, async (req, res)=>{
 router.get('/array', async (req, res) => {
     let id = [];
     let all = await User.find()
-                    .then(users =>{
-                        users.forEach(user => {
-                            id.push(user.id);
-                        })
-                    })
+        .then(users => {
+            users.forEach(user => {
+                id.push(user.id);
+            })
+        })
     console.log(id);
-    
+
     // all.forEach(user => {
     //     id.push(user.id);
     // })
@@ -113,9 +113,9 @@ router.get('/array', async (req, res) => {
 
 
 //update username
-router.put('/updateUsername',ensureAuthenticated, async (req, res) => {
-    try{
-        if(req.body.username === ''){
+router.put('/updateUsername', ensureAuthenticated, async (req, res) => {
+    try {
+        if (req.body.username === '') {
             throw new Error('username cannot be empty');
         }
         let user = await User.findById(req.user.id);
@@ -124,59 +124,85 @@ router.put('/updateUsername',ensureAuthenticated, async (req, res) => {
         await user.save();
         res.redirect('/setting');
     }
-    catch{
+    catch {
         res.send('error');
     }
-   
+
+});
+
+router.put('/deactivate', ensureAuthenticated, async (req, res) => {
+    try {
+        let user = await User.findById(req.user.id);
+        user.activated = false;
+        await user.save();
+        res.redirect('/setting');
+    }
+    catch(err){
+        console.log(err);
+        res.render(err.msg)
+    }
+});
+
+router.put('/activate', ensureAuthenticated, async (req, res) => {
+    try {
+        let user = await User.findById(req.user.id);
+        user.activated = true;
+        await user.save();
+        res.redirect('/setting');
+    }
+    catch(err){
+        console.log(err);
+        res.render(err.msg)
+    }
 });
 
 //update password
-router.put('/updatePassword',ensureAuthenticated, async (req, res) => {
-    try{
+router.put('/updatePassword', ensureAuthenticated, async (req, res) => {
+    try {
         //find user old password
         let userChange = await User.findById(req.user.id);
         //check if old password is correct
-        if(await bycrypt.compare(req.body.oldPassword, userChange.password)){
+        if (await bycrypt.compare(req.body.oldPassword, userChange.password)) {
             userChange.password = await bycrypt.hash(req.body.newPassword, 10);
-           
+
         }
-        else{
+        else {
             throw new Error('wrong password');
         }
         //check if new password is empty
-        if(req.body.newPassword === ''){
+        if (req.body.newPassword === '') {
             throw new Error('New password cannot be empty');
         }
         //check if new password is less than 8 characters
-        if(req.body.newPassword.length < 8){
+        if (req.body.newPassword.length < 8) {
             throw new Error('New password must be at least 8 characters');
         }
         //check if new password and confirm password match
-        if(req.body.newPassword != req.body.confirmPassword){
+        if (req.body.newPassword != req.body.confirmPassword) {
             throw new Error('new passwords do not match');
         }
         //check if new password is same as old password
-        if(req.body.old === req.body.newPassword){
+        if (req.body.old === req.body.newPassword) {
             throw new Error('New password cannot be same as old');
 
         }
         await userChange.save();
-        res.render('successSetting', {user: req.user});
+        res.render('successSetting', { user: req.user });
     }
-    catch(err){
-        res.render('settingError', {user: req.user ,error: err.message});
+    catch (err) {
+        res.render('settingError', { user: req.user, error: err.message });
     }
-    
+
 
 });
 
 
-router.get('/logout', function(req, res, next) {
-    req.logout(function(err) {
-      if (err) { return next(err); }
-      res.redirect('/');
+router.get('/logout', function (req, res, next) {
+    req.logout(function (err) {
+        if (err) { return next(err); }
+        res.redirect('/');
     });
-  });
+});
 
 router.get('/signup', (req, res) => {
     res.render('signup')
@@ -186,26 +212,26 @@ router.get('/fail', (req, res) => {
 });
 
 
-router.post('/signup', forwardAuthenticated,async (req, res) => {
+router.post('/signup', forwardAuthenticated, async (req, res) => {
 
     // check if any fields are empty
-    if(req.body.username === '' || req.body.email === '' || req.body.password === '' || req.body.confirm === '') {
+    if (req.body.username === '' || req.body.email === '' || req.body.password === '' || req.body.confirm === '') {
         res.redirect('/signup');
     }
-    if(req.body.password.length < 8) {
+    if (req.body.password.length < 8) {
         res.redirect('/signup');
     };
-    if(req.body.password !== req.body.confirm) {
+    if (req.body.password !== req.body.confirm) {
         res.redirect('/signup');
     }
 
     //saving user to database       
     try {
         // check if email is already in use
-        const dbemail = await User.findOne({email: req.body.email});
+        const dbemail = await User.findOne({ email: req.body.email });
         // console.log(`email check ${dbemail}`);
-        if(dbemail){
-            throw new Error ('email already in use');
+        if (dbemail) {
+            throw new Error('email already in use');
         }
         const hashedPassword = await bycrypt.hash(req.body.password, 10);
         const newUser = new User({
@@ -217,10 +243,10 @@ router.post('/signup', forwardAuthenticated,async (req, res) => {
         await newUser.save();
         res.send('created');
     }
-    catch(err) { 
+    catch (err) {
         res.render('signupError');
         // console.log(err);
-     }
+    }
 });
 
 
