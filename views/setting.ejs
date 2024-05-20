@@ -54,10 +54,10 @@
                 
                 <% if(user.activated == true){%>
                     <p>Deactivate account</p>
-                    <button data-modal-target="#deactivateModal" class="settingBtn">Deactivate account</button>
+                    <button data-modal-target="#deactivateModal" class="settingBtn" aria-label="Deactivate account">Deactivate account</button>
                 <%} else{%>
                     <p>Activate account</p>
-                    <button data-modal-target="#deactivateModal" class="settingBtn">Activate account</button>
+                    <button data-modal-target="#deactivateModal" class="settingBtn" aria-label="Activate account">Activate account</button>
                 <%}%>
             </div>
             
@@ -178,18 +178,18 @@
     
         <div class="modal-body">
             <% if(user.activated == true){%>
-                <p>Are you sure you want to deactivate your account?</p>
+                <p id="deactivateModalTitle">Are you sure you want to deactivate your account?</p>
             <%} else{%>
-                <p>Are you sure you want to activate your account?</p>
+                <<p id="deactivateModalTitle">Are you sure you want to activate your account?</p>
             <%}%>
             <div>
                 <% if(user.activated == true){%>
                     <form action="/deactivate?_method=PUT" method="POST">
-                        <button class="deactivateBtn" type="submit">Deactivate</button>
+                        <button class="deactivateBtn" aria-label="Deactivate Account" type="submit">Deactivate</button>
                     </form>
                 <%} else{%>
                     <form action="/activate?_method=PUT" method="POST">
-                        <button class="deactivateBtn" type="submit">Activate</button>
+                        <button class="deactivateBtn" aria-label="Deactivate Account" type="submit">Activate</button>
                     </form>
                 <%}%>
                 <button class="cancelBtn">Cancel</button>
